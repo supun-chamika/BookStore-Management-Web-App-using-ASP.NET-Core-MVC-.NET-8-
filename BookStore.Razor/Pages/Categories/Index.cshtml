@@ -1,0 +1,46 @@
+﻿@page
+@model BookStore.Razor.Pages.Categories.IndexModel
+@{
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="">
+                Category List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-page="/Categories/create" class="btn btn-outline-success">Create New Category</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-borderless table-striped">
+    <thead>
+        <tr class="table-dark">
+            <th>Category Name</th>
+            <th>Display Order</th>
+            <th class="text-end">Edit/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model.CategoryList.OrderBy(u => u.DisplayOrder))
+        {
+            <tr>
+                <td>@obj.Name</td>
+                <td>@obj.DisplayOrder</td>
+                <td>
+                    <div class="button-group text-end" role="group">
+                        <a asp-page="/Categories/Edit" asp-route-id="@obj.Id" class="btn btn-outline-primary mb-2 btn-sm">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a asp-page="/Categories/Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger mb-2 btn-sm">
+                            <i class="bi bi-trash3-fill"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

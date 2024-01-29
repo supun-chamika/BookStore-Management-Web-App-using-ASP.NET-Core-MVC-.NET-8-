@@ -1,0 +1,45 @@
+﻿@page
+@model BookStore.Razor.Pages.Categories.CreateModel
+@{
+}
+
+<form method="post">
+	<div class="border pt-4 pb-3">
+		<div class="row">
+			<h2 class="">
+				Create Category
+			</h2>
+			<hr/>
+		</div>
+		<div class="form-floating mb-3">
+			<input asp-for="Category.Name" class="form-control" id="floatingName" placeholder="">
+			<label asp-for="Category.Name" for="floatingInput"></label>
+			<span asp-validation-for="Category.Name" class="text-danger"></span>
+		</div>
+		<div class="form-floating mb-4">
+			<input asp-for="Category.DisplayOrder" class="form-control" id="floatingOrder" placeholder="">
+			<label asp-for="Category.DisplayOrder" for="floatingOrder"></label>
+			<span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
+		</div>
+		@* <div asp-validation-summary="All" class="alert alert-dismissible alert-danger">
+			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		</div> *@
+		<div class="row">
+			<div class="col-12 col-md-6 mb-2">
+				<button type="submit" class="form-control btn btn-outline-success">CREATE</button>
+			</div>
+			<div class="col-12 col-md-6 mb-2">
+				<a asp-page="Index" class="btn btn-outline-dark form-control">
+					<i class="bi bi-skip-backward-circle"></i> BACK TO LIST
+				</a>
+			</div>
+		</div>
+	</div>
+</form>
+
+@* for client side validation *@
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

@@ -1,5 +1,5 @@
-﻿using BookStore.WEB.Data;
-using BookStore.WEB.Models;
+﻿using BookStore.DataAccess.Data;
+using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 

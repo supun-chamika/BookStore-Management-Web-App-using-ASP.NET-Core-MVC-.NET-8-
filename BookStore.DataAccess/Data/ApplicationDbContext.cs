@@ -1,9 +1,9 @@
-﻿using BookStore.WEB.Models;
+﻿using BookStore.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStore.WEB.Data
+namespace BookStore.DataAccess.Data
 {
-    public class ApplicationDbContext: DbContext
+	public class ApplicationDbContext: DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

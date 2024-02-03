@@ -1,24 +1,27 @@
 ﻿using BookStore.DataAccess.Data;
+using BookStore.DataAccess.Repository;
+using BookStore.DataAccess.Repository.IRepository;
 using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace BookStore.WEB.Controllers
+namespace BookStore.WEB.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Categories.ToList();
+            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
 
-        public IActionResult Create() 
+        public IActionResult Create()
         {
             return View();
         }
@@ -32,20 +35,20 @@ namespace BookStore.WEB.Controllers
             {
                 ModelState.AddModelError("DisplayOrder", "The Display Name can not be similar to the Name");
             }
-			if (obj.Name.ToLower() == "test")
-			{
-				ModelState.AddModelError("Name", "The Display Name can not be similar to 'test'.");
-			}
-
-			if (ModelState.IsValid)
+            if (obj.Name.ToLower() == "test")
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                ModelState.AddModelError("Name", "The Display Name can not be similar to 'test'.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
             return View();
-            
+
         }
 
         //Update Category
@@ -56,9 +59,9 @@ namespace BookStore.WEB.Controllers
                 return NotFound();
             }
 
-            Category? categoryFromDb = _db.Categories.Find(id);
-            //Category? categoryFromDb2 = _db.Categories.FirstOrDefault(u => u.Id == id);
-            //Category? categoryFromDb3 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
+            //Category? categoryFromDb2 =  _unitOfWork.Categories.FirstOrDefault(u => u.Id == id);
+            //Category? categoryFromDb3 =  _unitOfWork.Categories.Where(u => u.Id == id).FirstOrDefault();
 
             if (categoryFromDb == null)
             {
@@ -72,8 +75,8 @@ namespace BookStore.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
@@ -88,7 +91,7 @@ namespace BookStore.WEB.Controllers
                 return NotFound();
             }
 
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
 
             if (categoryFromDb == null)
             {
@@ -100,13 +103,13 @@ namespace BookStore.WEB.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _db.Categories.Find(id);
+            Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
+            _unitOfWork.Category.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }

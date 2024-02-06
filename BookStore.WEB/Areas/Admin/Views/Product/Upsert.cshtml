@@ -1,0 +1,133 @@
+﻿@model ProductVM
+
+<form method="post" enctype="multipart/form-data">
+	<input asp-for="Product.Id" hidden/>
+	<input asp-for="Product.ImageUrl" hidden />
+	<div class="border pt-4 pb-3">
+		<div class="row">
+			<h2 class="text-center">
+				@(Model.Product.Id != 0? "UPDATE":"CREATE") PRODUCT
+			</h2>
+			<hr/>
+		</div>
+		<div class="row">
+			<div class="col-10">
+				<div class="row">
+					<div class="form-floating mb-3 col-6">
+						<input asp-for="Product.Title" class="form-control" id="floatingName" placeholder="">
+						<label asp-for="Product.Title" for="floatingInput"></label>
+						<span asp-validation-for="Product.Title" class="text-danger"></span>
+					</div>
+					<div class="form-floating mb-3 col-6">
+						<input asp-for="Product.ISBN" class="form-control" id="floatingName" placeholder="">
+						<label asp-for="Product.ISBN" for="floatingInput"></label>
+						<span asp-validation-for="Product.ISBN" class="text-danger"></span>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-floating mb-4 col-3 col-md-3">
+						<input asp-for="Product.ListPrice" class="form-control" id="floatingName" placeholder="">
+						<label asp-for="Product.ListPrice" for="floatingInput"></label>
+						<span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+					</div>
+					<div class="form-floating mb-4 col-3 col-md-3">
+						<input asp-for="Product.Price" class="form-control" id="floatingOrder" placeholder="">
+						<label asp-for="Product.Price" for="floatingOrder"></label>
+						<span asp-validation-for="Product.Price" class="text-danger"></span>
+					</div>
+					<div class="form-floating mb-4 col-3 col-md-3">
+						<input asp-for="Product.Price50" class="form-control" id="floatingName" placeholder="">
+						<label asp-for="Product.Price50" for="floatingInput"></label>
+						<span asp-validation-for="Product.Price50" class="text-danger"></span>
+					</div>
+					<div class="form-floating mb-4 col-3 col-md-3">
+						<input asp-for="Product.Price100" class="form-control" id="floatingOrder" placeholder="">
+						<label asp-for="Product.Price100" for="floatingOrder"></label>
+						<span asp-validation-for="Product.Price100" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="mb-3 col-6">
+						<label asp-for="Product.Author" for="floatingOrder" class="form-label text-muted"></label>
+						<input asp-for="Product.Author" class="form-control" id="floatingOrder" placeholder="">
+						<span asp-validation-for="Product.Author" class="text-danger"></span>
+					</div>
+					<div class="mb-3 col-6">
+						@* <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-select" id="floatingOrder" placeholder="">
+						<option disabled selected>--Select Category--</option>
+						</select> *@
+						<label asp-for="Product.CategoryId" for="floatingOrder" class="form-label text-muted"></label>
+						<select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="form-select" id="floatingOrder" placeholder="">
+							<option disabled selected>--Select Category--</option>
+						</select>
+
+						<span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="mb-3 col-12 col-md-6">
+						<label asp-for="Product.ImageUrl" for="floatingOrder" class="form-label text-muted"></label>
+						<input type="file" name="file" class="form-control" id="floatingOrder" placeholder="">
+					</div>
+				</div>
+			</div>
+			<div class="col-2">
+				<img src="@Model.Product.ImageUrl" width="100%" 
+				style="border:1px; border-radius:5px;"/>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="mb-3">
+				<label asp-for="Product.Description" for="floatingOrder" class="form-label text-muted"></label>
+				<textarea asp-for="Product.Description" class="form-control" id="floatingOrder" placeholder=""></textarea>	
+			</div>
+		</div>
+		
+		@* <div asp-validation-summary="All" class="alert alert-dismissible alert-danger">
+			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		</div> *@
+		<div class="row mt-2">
+			<div class="col-6 col-md-3 mb-2">
+				@if (Model.Product.Id != 0)
+				{
+					<button type="submit" class="form-control btn btn-outline-success">UPDATE</button>
+				}
+				else
+				{
+					<button type="submit" class="form-control btn btn-outline-success">CREATE</button>
+				}
+			</div>
+			<div class="col-6 col-md-3 mb-2">
+				<a asp-controller="Product" asp-action="Index" class="btn btn-outline-dark form-control">
+					<i class="bi bi-arrow-left-circle"></i> BACK TO LIST
+				</a>
+			</div>
+		</div>
+	</div>
+</form>
+
+@* for client side validation *@
+@section Scripts{
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons link lists searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+			toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+			tinycomments_mode: 'embedded',
+			tinycomments_author: 'Author name',
+			mergetags_list: [
+				{ value: 'First.Name', title: 'First Name' },
+				{ value: 'Email', title: 'Email' },
+			],
+			ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+		});
+	</script>
+
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

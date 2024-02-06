@@ -1,0 +1,57 @@
+﻿@model List<Product>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="">
+                PRODUCT LIST
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Product" asp-action="Upsert" class="btn btn-outline-success">
+                <i class="bi bi-book"></i> Create New Product
+            </a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-borderless table-striped" id="tblData">
+    <thead>
+        <tr class="table-dark">
+            <th>Title</th>
+            <th>ISBN</th>
+            <th>Price</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th class="text-end">Edit/Delete</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script src="~/js/product.js"></script>
+}
+
+
+@* <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td>@obj.Title</td>
+                <td>@obj.ISBN</td>
+                <td>@obj.ListPrice</td>
+                <td>@obj.Author</td>
+                <td>@obj.Category.Name</td>
+                <td>
+                    <div class="button-group text-end" role="group">
+                        <a asp-controller="Product" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-outline-primary mb-2 btn-sm">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger mb-2 btn-sm">
+                            <i class="bi bi-trash3-fill"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody> *@

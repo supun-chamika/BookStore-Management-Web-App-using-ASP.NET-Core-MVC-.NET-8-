@@ -3,18 +3,17 @@
 <form method="post">
 	<input asp-for="Id" hidden />
 	<div class="border pt-4 pb-3">
-		<div class="row">
+		<div class="row mb-4">
 			<h2 class="text-center">
 				UPDATE CATEGORY
 			</h2>
-			
 		</div>
-		<div class="form-floating mb-3">
+		<div class="form-floating col-12 col-md-6 mb-3">
 			<input asp-for="Name" class="form-control" id="floatingName" placeholder="">
 			<label asp-for="Name" for="floatingInput"></label>
 			<span asp-validation-for="Name" class="text-danger"></span>
 		</div>
-		<div class="form-floating mb-4">
+		<div class="form-floating col-12 col-md-3 mb-4">
 			<input asp-for="DisplayOrder" class="form-control" id="floatingOrder" placeholder="">
 			<label asp-for="DisplayOrder" for="floatingOrder"></label>
 			<span asp-validation-for="DisplayOrder" class="text-danger"></span>
@@ -23,12 +22,12 @@
 		<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 		</div> *@
 		<div class="row">
-			<div class="col-12 col-md-6 mb-2">
-				<button type="submit" class="form-control btn btn-outline-success">UPDATE</button>
+			<div class="col-12 col-md-2 mb-2">
+				<button type="submit" class="form-control btn btn-outline-primary">Update</button>
 			</div>
-			<div class="col-12 col-md-6 mb-2">
+			<div class="col-12 col-md-2 mb-2">
 				<a asp-controller="Category" asp-action="Index" class="btn btn-outline-dark form-control">
-					<i class="bi bi-arrow-left-circle"></i> BACK TO LIST
+					<i class="bi bi-arrow-left-circle"></i> Back to List
 				</a>
 			</div>
 		</div>

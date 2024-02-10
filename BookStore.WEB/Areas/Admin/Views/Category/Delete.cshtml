@@ -9,11 +9,11 @@
 			</h2>
 			<hr />
 		</div>
-		<div class="form-floating mb-3">
+		<div class="form-floating mb-3 col-12 col-md-6">
 			<input asp-for="Name" disabled class="form-control" id="floatingName" placeholder="">
 			<label asp-for="Name" for="floatingInput"></label>
 		</div>
-		<div class="form-floating mb-4">
+		<div class="form-floating mb-4 col-12 col-md-3">
 			<input asp-for="DisplayOrder" disabled class="form-control" id="floatingOrder" placeholder="">
 			<label asp-for="DisplayOrder" for="floatingOrder"></label>
 		</div>
@@ -21,12 +21,12 @@
 		<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 		</div> *@
 		<div class="row">
-			<div class="col-12 col-md-6 mb-2">
-				<button type="submit" class="form-control btn btn-outline-success">DELETE</button>
+			<div class="col-12 col-md-2 mb-2">
+				<button type="submit" class="form-control btn btn-outline-danger">Delete</button>
 			</div>
-			<div class="col-12 col-md-6 mb-2">
+			<div class="col-12 col-md-2 mb-2">
 				<a asp-controller="Category" asp-action="Index" class="btn btn-outline-dark form-control">
-					<i class="bi bi-arrow-left-circle"></i> BACK TO LIST
+					<i class="bi bi-arrow-left-circle"></i> Back to List
 				</a>
 			</div>
 		</div>

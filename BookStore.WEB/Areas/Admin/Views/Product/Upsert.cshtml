@@ -91,19 +91,19 @@
 			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 		</div> *@
 		<div class="row mt-2">
-			<div class="col-6 col-md-3 mb-2">
+			<div class="col-6 col-md-2 mb-2">
 				@if (Model.Product.Id != 0)
 				{
-					<button type="submit" class="form-control btn btn-outline-success">UPDATE</button>
+					<button type="submit" class="form-control btn btn-outline-primary">Update</button>
 				}
 				else
 				{
-					<button type="submit" class="form-control btn btn-outline-success">CREATE</button>
+					<button type="submit" class="form-control btn btn-outline-success">Create</button>
 				}
 			</div>
-			<div class="col-6 col-md-3 mb-2">
+			<div class="col-6 col-md-2 mb-2">
 				<a asp-controller="Product" asp-action="Index" class="btn btn-outline-dark form-control">
-					<i class="bi bi-arrow-left-circle"></i> BACK TO LIST
+					<i class="bi bi-arrow-left-circle"></i> Back to List
 				</a>
 			</div>
 		</div>

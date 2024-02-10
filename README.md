@@ -4,6 +4,8 @@
 
 Welcome to the Bookstore Management Web Application! This project aims to provide an efficient and user-friendly platform for managing books and categories within a bookstore. Whether you're an admin overseeing book details or a customer exploring available titles, this application has you covered. Below, you'll find an introduction to the key features, technologies, and methodologies utilized in this project.
 
+![image](https://github.com/supun-chamika/BookStore-Management-Web-App-using-ASP.NET-Core-MVC-.NET-8-/assets/101165810/2fe2db42-725b-4b1f-913a-97a7be9c678b)
+
 ## Features
 
 1. **Customer View:**
